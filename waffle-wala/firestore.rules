@@ -1,0 +1,100 @@
+// ─────────────────────────────────────────────
+// firestore.rules  ·  Production security rules
+//
+// Deploy via:  firebase deploy --only firestore:rules
+// ─────────────────────────────────────────────
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ─────────────────────────
+
+    /** True if the incoming data matches only the allowed fields */
+    function hasOnly(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    /** Basic string guard — present, non-empty, within max length */
+    function validStr(field, maxLen) {
+      return request.resource.data[field] is string
+          && request.resource.data[field].size() > 0
+          && request.resource.data[field].size() <= maxLen;
+    }
+
+    // ── /orders ──────────────────────────────────
+    match /orders/{orderId} {
+
+      // Customers can create an order (but never read others')
+      allow create: if
+        // Required fields exist
+        request.resource.data.keys().hasAll([
+          'orderNum', 'flatNo', 'block', 'phone',
+          'items', 'total', 'paymentMethod', 'status',
+          'createdAt', 'timestamp'
+        ])
+        // Field type + length guards
+        && request.resource.data.flatNo  is int
+        && request.resource.data.total   is number
+        && request.resource.data.total   > 0
+        && request.resource.data.total   < 100000    // sanity cap ₹1 lakh
+        && validStr('block', 2)
+        && validStr('phone', 15)
+        && validStr('paymentMethod', 10)
+        // Status must be 'pending' on creation
+        && request.resource.data.status == 'pending'
+        // Prevent injection: items is a JSON string, cap at 5 KB
+        && request.resource.data.items is string
+        && request.resource.data.items.size() <= 5000;
+
+      // Customers cannot read orders (privacy) — only server/admin can
+      allow read:   if false;
+
+      // No customer updates or deletes
+      allow update, delete: if false;
+    }
+
+    // ── /inventory/stock ─────────────────────────
+    match /inventory/{docId} {
+
+      // Any customer can read stock levels (needed to show "Only X left")
+      allow read: if true;
+
+      // Nobody can write from the client (admin uses server-side or Firebase console)
+      // If you want client-side admin writes, add an admin UID check here:
+      //   allow write: if request.auth != null && request.auth.uid == 'YOUR_ADMIN_UID';
+      allow write: if false;
+    }
+
+    // ── /settings/operations ─────────────────────
+    match /settings/{docId} {
+
+      // Customers need to read the closed/open flag
+      allow read: if true;
+
+      // Nobody writes from client (toggle via Cloud Function or Firebase console)
+      allow write: if false;
+    }
+
+    // ── /suggestions ─────────────────────────────
+    match /suggestions/{sugId} {
+
+      // Customers can submit a suggestion
+      allow create: if
+        request.resource.data.keys().hasAll(['type', 'text', 'from', 'read', 'createdAt', 'timestamp'])
+        && validStr('text', 500)
+        && validStr('type', 20)
+        && request.resource.data.read == false   // must not mark own as read
+        && request.resource.data.from is string
+        && request.resource.data.from.size() <= 40;
+
+      // Customers cannot read, update, or delete suggestions
+      allow read, update, delete: if false;
+    }
+
+    // ── Catch-all: deny everything else ──────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<!-- ── Primary SEO ── -->
+<title>Waffle Wala 🧇 | Fresh Waffles, Slushies & More</title>
+<meta name="description" content="Order freshly-made waffles, slushies, Maggi, popcorn and more from Waffle Wala at Heritage Residence. Open Saturday & Sunday, 4–6 PM.">
+<meta name="keywords" content="waffle wala, waffles, slushies, maggi, popcorn, sandwiches, heritage residence, online food order">
+<meta name="author" content="Waffle Wala">
+<link rel="canonical" href="https://wafflewala.vercel.app/">
+
+<!-- ── Open Graph ── -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://wafflewala.vercel.app/">
+<meta property="og:title"       content="Waffle Wala 🧇 — Order Fresh Waffles Online">
+<meta property="og:description" content="Crispy waffles, icy slushies, cheesy Maggi & more. Order for delivery right to your flat!">
+<meta property="og:image"       content="https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale"      content="en_IN">
+<meta property="og:site_name"   content="Waffle Wala">
+
+<!-- ── Twitter Cards ── -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Waffle Wala 🧇 — Order Fresh Waffles Online">
+<meta name="twitter:description" content="Crispy waffles, icy slushies, cheesy Maggi & more. Order to your flat!">
+<meta name="twitter:image"       content="https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=1200&q=80">
+
+<!-- ── PWA / Mobile ── -->
+<meta name="theme-color" content="#3b1f0e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Waffle Wala">
+
+<!-- ── Structured Data ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "Waffle Wala",
+  "description": "Fresh waffles, slushies, Maggi and more — served at Heritage Residence",
+  "servesCuisine": ["Waffles", "Fast Food", "Snacks"],
+  "openingHours": "Sa-Su 16:00-18:00",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Heritage Residence",
+    "addressCountry": "IN"
+  },
+  "hasMenu": "https://wafflewala.vercel.app/"
+}
+</script>
+
+<!-- ── Fonts ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Caveat:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ── Styles ── -->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- Loading screen -->
+<div id="loading-screen" role="status" aria-label="Loading Waffle Wala" aria-live="polite">
+  <div class="load-wm" aria-hidden="true">Waffle Wala</div>
+  <div class="load-sub">heating up the griddle…</div>
+  <div class="load-track" role="progressbar" aria-label="Loading progress">
+    <div class="load-bar"></div>
+  </div>
+</div>
+
+<!-- App root — customer view or admin injected here by JS -->
+<div id="app-root"></div>
+
+<!-- Modular JS — loaded as ES modules -->
+<script type="module" src="js/config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/ui.js"></script>
+<script type="module" src="js/customer.js"></script>
+<script type="module" src="js/admin.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* ─────────────────────────────────────────────
+   tokens.css  ·  Design system tokens
+   ───────────────────────────────────────────── */
+:root {
+  /* Brand Palette */
+  --cream:       #f5ebe0;
+  --warm:        #fffaf4;
+  --caramel:     #c8813a;
+  --caramel-dk:  #9e5f21;
+  --choco:       #3b1f0e;
+  --choco-mid:   #6b3a1f;
+  --butter:      #f5c842;
+  --butter-lt:   #fde68a;
+  --sage:        #7a8c5e;
+  --brick:       #c0392b;
+
+  /* Text */
+  --text:        #2c1810;
+  --text-mid:    #5a3825;
+  --text-lt:     #9c7a5e;
+
+  /* Surfaces */
+  --card:        #ffffff;
+  --border:      rgba(60, 30, 10, 0.12);
+
+  /* Spacing */
+  --sp-xs:   4px;
+  --sp-sm:   8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  40px;
+  --sp-2xl: 64px;
+
+  /* Radius */
+  --r-sm:  8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 24px;
+  --r-pill: 99px;
+
+  /* Transitions */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --t-fast:  0.15s;
+  --t-base:  0.2s;
+  --t-slow:  0.35s;
+
+  /* Safe areas (notch/home bar) */
+  --sat: env(safe-area-inset-top,    0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left,   0px);
+  --sar: env(safe-area-inset-right,  0px);
+
+  /* Z-index scale */
+  --z-fab:     500;
+  --z-header:  200;
+  --z-banner:  800;
+  --z-overlay: 1000;
+  --z-toast:   3000;
+  --z-loading: 9999;
+}

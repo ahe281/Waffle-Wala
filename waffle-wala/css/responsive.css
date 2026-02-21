@@ -1,0 +1,168 @@
+/* ─────────────────────────────────────────────
+   responsive.css  ·  Breakpoints & a11y queries
+   ───────────────────────────────────────────── */
+
+/* ── Tablet (641-1024) ── */
+@media (min-width: 600px) {
+  .venue-pill { display: block; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .pgrid    { grid-template-columns: repeat(2, 1fr); }
+  .menu-sec { padding: 48px 20px 72px; }
+  .h-in     { padding: 0 20px; }
+}
+
+/* ── Mobile (≤640px) ── */
+@media (max-width: 640px) {
+  /* Layout */
+  .pgrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  /* Header */
+  .h-in    { height: 60px; padding: 0 16px; }
+  .cart-btn { padding: 10px 16px; font-size: 13px; min-height: 44px; }
+  .wm      { font-size: 22px; }
+
+  /* Hero */
+  .hero         { padding: 48px 16px 70px; }
+  .hero-title   { font-size: clamp(38px, 10vw, 72px); letter-spacing: -2px; }
+  .hero-eyebrow { font-size: 17px; }
+  .hero-sub     { font-size: 18px; }
+  .hb           { font-size: 12px; padding: 8px 14px; }
+
+  /* Menu */
+  .menu-sec  { padding: 36px 14px 80px; }
+  .menu-hdr  { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .srch-wrap { width: 100%; }
+  .srch-input { font-size: 16px !important; } /* Prevent iOS zoom */
+  .menu-ttl  { font-size: clamp(26px, 7vw, 38px); }
+
+  /* Tabs */
+  .tabs-row { gap: 6px; padding-bottom: 4px; scroll-snap-type: x mandatory; }
+  .tab-btn  { padding: 10px 16px; font-size: 13px; min-height: 44px; scroll-snap-align: start; }
+
+  /* Cards */
+  .pcard   { border-radius: 16px; }
+  .img-wrap { height: 140px; }
+  .cbody   { padding: 12px 14px 14px; }
+  .cname   { font-size: 15px; }
+  .cdesc   { font-size: 12px; margin-bottom: 10px; }
+  .cprice  { font-size: 20px; }
+  .add-btn { padding: 8px 14px; font-size: 12px; min-height: 40px; }
+  .badge   { font-size: 9px; padding: 4px 8px; }
+
+  /* Modals - bottom sheet behaviour */
+  .overlay { align-items: flex-end; padding: 0; }
+  .modal {
+    border-radius: 22px 22px 0 0;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    max-height: 92vh;
+    max-width: 100%;
+    padding-bottom: var(--sab);
+  }
+  /* Swipe handle */
+  .modal::before {
+    content: '';
+    display: block;
+    width: 40px; height: 4px;
+    background: rgba(59,31,14,.2);
+    border-radius: var(--r-pill);
+    margin: 10px auto -4px;
+  }
+  .mhead { padding: 16px 20px 12px; }
+  .mbody { padding: 16px 20px 20px; }
+
+  /* Inputs — 16px prevents iOS zoom */
+  .finput, .fsel, .sug-ta, .sug-name { font-size: 16px !important; }
+  .finput, .fsel { padding: 13px 14px; min-height: 48px; }
+
+  /* Payment */
+  .pay-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pay-opt  { padding: 12px 8px; min-height: 80px; }
+  .pay-ico  { font-size: 22px; }
+
+  /* Buttons */
+  .btn-pri { padding: 17px; font-size: 17px; }
+  .btn-sec { padding: 14px; }
+
+  /* Cart qty */
+  .qbtn { width: 38px; height: 38px; font-size: 18px; }
+
+  /* FAB */
+  .sug-fab { bottom: calc(16px + var(--sab)); left: 16px; padding: 12px 18px; font-size: 16px; }
+
+  /* Toast */
+  .toast { bottom: calc(16px + var(--sab)); right: 16px; left: 16px; max-width: none; }
+
+  /* Admin */
+  .admin-ttl  { font-size: 30px; }
+  .admin-hero { padding: calc(48px + var(--sat)) 16px 44px; }
+  .admin-abtn { padding: 10px 16px; font-size: 13px; }
+  .stats-row  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-val   { font-size: 32px; }
+  .acard      { padding: 18px; }
+  .oactions   { flex-direction: column; gap: 8px; }
+  .oactions button { padding: 13px; min-height: 48px; }
+  .inv-grid   { grid-template-columns: 1fr; }
+
+  /* Suggestions */
+  .scard-top  { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .sacts      { align-self: flex-end; }
+  .sact-btn   { min-height: 38px; padding: 6px 12px; font-size: 12px; }
+  .inbox-filters { gap: 6px; }
+  .ifbtn      { min-height: 40px; padding: 8px 14px; font-size: 13px; }
+
+  /* Toppings */
+  .top-grid { grid-template-columns: repeat(2, 1fr); }
+  .top-chip { min-height: 48px; padding: 10px; }
+  .rem-chip { min-height: 40px; padding: 8px 14px; }
+
+  /* Footer */
+  footer    { padding: 44px 16px calc(28px + var(--sab)); }
+  .foot-wm  { font-size: 32px; }
+
+  /* Chart */
+  .chart-bars     { height: 160px; gap: 6px; }
+  .blbl           { font-size: 8px; }
+  .analytics-row  { grid-template-columns: repeat(2, 1fr); }
+  .anval          { font-size: 22px; }
+
+  /* Closed overlay */
+  .closed-box h1 { font-size: 38px; }
+  .closed-ico    { font-size: 60px; }
+}
+
+/* ── Very small phones (≤380px) ── */
+@media (max-width: 380px) {
+  .pgrid    { grid-template-columns: 1fr; }
+  .img-wrap { height: 160px; }
+  .hero-title { font-size: 36px; }
+  .pay-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Landscape phones ── */
+@media (max-width: 812px) and (orientation: landscape) {
+  .hero       { padding: 32px 24px 52px; }
+  .hero-title { font-size: clamp(32px, 8vw, 56px); }
+  .modal      { max-height: 96vh; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── High contrast ── */
+@media (prefers-contrast: high) {
+  .tab-btn, .pcard, .finput, .fsel { border-width: 3px; }
+}
+
+/* ── Dark mode (optional future hook) ── */
+@media (prefers-color-scheme: dark) {
+  /* Intentionally empty — warm theme already has dark backgrounds in key areas.
+     Add overrides here if a dark mode is desired in future. */
+}
